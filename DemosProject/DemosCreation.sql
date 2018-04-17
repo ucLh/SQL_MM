@@ -55,3 +55,21 @@ Create Table Vacancies(
 	Quantity int Not Null,
 	Primary Key(DepId, PositionId)
 )
+
+ALTER TABLE Employees
+    ADD FOREIGN KEY (DepId) REFERENCES Departments(DepId)
+
+ALTER TABLE Employees
+    ADD FOREIGN KEY (PositionId) REFERENCES Positions(PositionId)
+
+ALTER TABLE Positions
+    ADD FOREIGN KEY (CatName) REFERENCES Category(CatName)
+
+ALTER TABLE Category
+    ADD CONSTRAINT borderCheck CHECK (MinSalary <= MaxSalary)
+
+ALTER TABLE Vacancies
+    ADD CHECK (Quantity >= 0)
+
+ALTER TABLE Employees
+    ADD CONSTRAINT DateCheck CHECK (HiringDate <= GETDATE())
